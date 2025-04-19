@@ -1,0 +1,120 @@
+/* Timeline specific styles */
+.timeline-container {
+  position: relative;
+  padding: 20px 0;
+}
+
+.timeline-line {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 2px;
+  background-color: #e5e7eb;
+  left: calc(25% - 1px);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.timeline-progress {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(180deg, #22c55e 0%, #86efac 100%);
+  left: calc(25% - 1px);
+  transform: translateX(-50%);
+  z-index: 1;
+  transition: height 0.3s ease;
+}
+
+.timeline-dot-container {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin: 1.5rem 2rem 0;
+  flex-shrink: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #e5e7eb;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  transition: background-color 0.3s ease;
+}
+
+.timeline-dot.active {
+  background-color: #22c55e;
+}
+
+.timeline-dot::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: border-color 0.3s ease;
+}
+
+.timeline-dot.active::before {
+  border-color: #22c55e;
+}
+
+/* Animation classes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .timeline-line,
+  .timeline-progress {
+    left: 24px;
+  }
+  
+  .timeline-item {
+    flex-direction: column;
+    padding-left: 48px;
+  }
+  
+  .timeline-dot-container {
+    position: absolute;
+    left: 24px;
+    margin: 1.5rem 0;
+  }
+  
+  .timeline-content {
+    width: 100%;
+  }
+  
+  .timeline-item .w-1/4 {
+    width: 100%;
+    text-align: left;
+    padding-right: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .timeline-item h3 {
+    position: static;
+    font-size: 2rem;
+  }
+}
